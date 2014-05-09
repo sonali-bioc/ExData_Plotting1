@@ -8,6 +8,10 @@ data <- rawdata[which(rawdata$Date %in% as.Date(c("2007-02-02","2007-02-01"))),]
 data$DateTime <- as.POSIXct(paste(data$Date, data$Time), 
                             format="%Y-%m-%d %H:%M:%S")
                             
+data$Sub_metering_1 <- as.numeric(levels(data$Sub_metering_1))[data$Sub_metering_1]
+data$Sub_metering_2 <- as.numeric(levels(data$Sub_metering_2))[data$Sub_metering_2]
+
+                            
 png("plot3.png", width=480, height=480)
 with(data, plot(DateTime, Sub_metering_1, type = "l", 
                 ylab="Energy Sub metering",xlab=NA))
